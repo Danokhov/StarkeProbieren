@@ -285,7 +285,7 @@ async function fetchOpenAITTS(text: string, lang: 'de' | 'ru'): Promise<Blob> {
         input: text,
         voice: 'nova', // Качественный голос (можно изменить на 'onyx' для мужского)
         language: lang === 'de' ? 'de' : 'ru',
-        speed: 0.9, // Скорость речи (0.25-4.0, по умолчанию 1.0)
+        speed: 1.0, // Скорость речи (0.25-4.0)
       }),
     });
 
@@ -310,6 +310,18 @@ async function fetchOpenAITTS(text: string, lang: 'de' | 'ru'): Promise<Blob> {
   } catch (error) {
     console.error('❌ [OpenAI TTS] Fetch error:', error);
     throw error;
+  }
+}
+
+// Предзагрузка аудио в кэш (без воспроизведения) — для быстрого старта при клике
+export async function preloadTextForTTS(text: string, lang: 'de' | 'ru' = 'de'): Promise<void> {
+  try {
+    const cached = await getFromCache(text, lang);
+    if (cached) return; // уже в кэше
+    const blob = await fetchOpenAITTS(text, lang);
+    await saveToCache(text, lang, blob);
+  } catch {
+    // Игнорируем ошибки предзагрузки
   }
 }
 

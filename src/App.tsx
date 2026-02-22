@@ -27,6 +27,7 @@ import { AccessControlService } from './services/accessControlService';
 import { initFirebase } from './config/firebase';
 import { SpacedRepetitionSM2 } from './services/spacedRepetitionService';
 import { getAllVerbFormCards } from './utils/verbCardsUtils';
+import { openTelegramBotLink } from './utils/telegramUtils';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -548,7 +549,7 @@ const App: React.FC = () => {
                <div className="relative z-10">
                  <h2 className="text-3xl font-black mb-2 leading-tight">Hallo, {user.name.split(' ')[0]}!</h2>
                  <p className="opacity-90 text-lg font-medium leading-relaxed mb-4">
-                   Приветствую тебя в курсе 180+ Сильных глаголов! Тебя ждут 11 Модулей (22 видео урока с ассоциациями, упражнениями и базой сильных глаголов) с помощью которых ты запомнишь все глаголы в 3-х формах.
+                   Приветствую тебя в курсе 180 сильных глаголов.
                  </p>
                  <button
                    onClick={() => setShowPromoVideoModal(true)}
@@ -654,7 +655,7 @@ const App: React.FC = () => {
                         if (isLocked) {
                           // Первые 6 модулей — ссылка на оплату 6 модулей
                           if (moduleNumber <= 6) {
-                            window.open('https://t.me/de_starke_verben_bot?start=699813f65029210aa5020570', '_blank');
+                            openTelegramBotLink('https://t.me/de_starke_verben_bot?start=699813f65029210aa5020570');
                           } else {
                             setShowProModal(true);
                           }
@@ -1022,14 +1023,14 @@ const App: React.FC = () => {
         </div>
 
         <div className="flex justify-center">
-          <button
-            onClick={() => {
-              setShowSpecialOffer(true);
-            }}
-            className="px-4 py-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl font-black text-sm shadow-lg active:scale-95 transition-all whitespace-nowrap"
-          >
-            СПЕЦПРЕДЛОЖЕНИЕ
-          </button>
+          {!showTrialLessons && !showTrialExercises && !showTrialKnowledgeCheck && !isTrialLessonMode && !selectedTopic && !activeModule && !showSpecialOffer && !showCourseInfo && !showAssociationsBase && (
+            <button
+              onClick={() => setShowSpecialOffer(true)}
+              className="px-4 py-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl font-black text-sm shadow-lg active:scale-95 transition-all whitespace-nowrap"
+            >
+              СПЕЦПРЕДЛОЖЕНИЕ
+            </button>
+          )}
         </div>
 
         <div className="flex justify-end">

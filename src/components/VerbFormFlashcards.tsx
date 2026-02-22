@@ -104,6 +104,19 @@ const VerbFormFlashcards: React.FC<VerbFormFlashcardsProps> = ({ topic, onComple
     });
   }, []);
 
+  // Предзагрузка аудио текущей карточки в фоне — при клике воспроизведение начнётся быстрее
+  useEffect(() => {
+    if (!currentCard) return;
+    const getText = () => {
+      if (isModule3OrHigher()) return `${currentCard!.praesens}, ${currentCard!.praeteritum}, ${currentCard!.partizip2}`;
+      if (isModule2OrHigher()) return `${currentCard!.praesens}, ${getPraesensThirdPerson(currentCard!.praesens)}`;
+      return currentCard!.praesens;
+    };
+    import('../services/openaiTtsService').then(({ preloadTextForTTS }) => {
+      preloadTextForTTS(getText(), 'de').catch(() => {});
+    });
+  }, [currentCard?.id]);
+
   const handleAudioClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -129,48 +142,36 @@ const VerbFormFlashcards: React.FC<VerbFormFlashcardsProps> = ({ topic, onComple
       await unlockAudio();
       console.log("✅ Audio unlocked before speaking");
       
-      // Используем OpenAI TTS для озвучки
+      // Используем OpenAI TTS для озвучки — одна фраза = один запрос (быстрее, без обрывков)
       try {
         const { playTextWithOpenAITTS } = await import('../services/openaiTtsService');
         
-        // Для модулей 3+ озвучиваем три формы (инфинитив, Präteritum, Partizip II)
+        let textToSpeak: string;
         if (isModule3OrHigher()) {
-          await playTextWithOpenAITTS(currentCard.praesens, 'de');
-          await new Promise(resolve => setTimeout(resolve, 500));
-          await playTextWithOpenAITTS(currentCard.praeteritum, 'de');
-          await new Promise(resolve => setTimeout(resolve, 500));
-          await playTextWithOpenAITTS(currentCard.partizip2, 'de');
-          await new Promise(resolve => setTimeout(resolve, 300));
+          // Три формы одной фразой — один API-запрос, плавная озвучка
+          textToSpeak = `${currentCard.praesens}, ${currentCard.praeteritum}, ${currentCard.partizip2}`;
         } else if (isModule2OrHigher()) {
-          // Для модуля 2 озвучиваем: "infinitive, er/sie/es Präsens"
           const thirdPerson = getPraesensThirdPerson(currentCard.praesens);
-          await playTextWithOpenAITTS(`${currentCard.praesens}, ${thirdPerson}`, 'de');
+          textToSpeak = `${currentCard.praesens}, ${thirdPerson}`;
         } else {
-          // Для модуля 1 озвучиваем только инфинитив
-          await playTextWithOpenAITTS(currentCard.praesens, 'de');
+          textToSpeak = currentCard.praesens;
         }
+        await playTextWithOpenAITTS(textToSpeak, 'de');
         console.log("✅ OpenAI TTS played successfully");
       } catch (openaiError) {
         console.warn("⚠️ [TTS Engine: OpenAI] Failed, switching to fallback:", openaiError);
-        // Fallback на browser speech synthesis с правильной настройкой языка
         const { playTextWithSpeechSynthesis } = await import('../services/audioService');
+        let textToSpeak: string;
         if (isModule3OrHigher()) {
-          await playTextWithSpeechSynthesis(currentCard.praesens, 'de');
-          await new Promise(resolve => setTimeout(resolve, 500));
-          await playTextWithSpeechSynthesis(currentCard.praeteritum, 'de');
-          await new Promise(resolve => setTimeout(resolve, 500));
-          await playTextWithSpeechSynthesis(currentCard.partizip2, 'de');
-          await new Promise(resolve => setTimeout(resolve, 300));
+          textToSpeak = `${currentCard.praesens}, ${currentCard.praeteritum}, ${currentCard.partizip2}`;
         } else if (isModule2OrHigher()) {
           const thirdPerson = getPraesensThirdPerson(currentCard.praesens);
-          await playTextWithSpeechSynthesis(`${currentCard.praesens}, ${thirdPerson}`, 'de');
+          textToSpeak = `${currentCard.praesens}, ${thirdPerson}`;
         } else {
-          await playTextWithSpeechSynthesis(currentCard.praesens, 'de');
+          textToSpeak = currentCard.praesens;
         }
+        await playTextWithSpeechSynthesis(textToSpeak, 'de');
       }
-      
-      // Пауза после воспроизведения
-      await new Promise(resolve => setTimeout(resolve, 300));
     } catch (error) {
       console.error("❌ Error in handleAudioClick:", error);
       // Пауза даже при ошибке

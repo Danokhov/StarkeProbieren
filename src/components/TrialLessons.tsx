@@ -90,9 +90,8 @@ const TrialLessons: React.FC<TrialLessonsProps> = ({ onBack, onStartModule, onRe
   const quizPassed = localStorage.getItem('trialQuizPassed') === 'true';
   if (quizPassed) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 w-full">
-        <div className="w-full max-w-2xl mx-auto">
-          <div className="bg-white rounded-[2.5rem] p-6 sm:p-8 shadow-2xl border border-gray-100">
+      <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 sm:px-6">
+        <div className="w-full">
             <div className="text-center mb-8">
               <div className="text-6xl mb-4">✅</div>
               <h1 className="text-3xl font-black text-gray-800 mb-4">
@@ -116,17 +115,16 @@ const TrialLessons: React.FC<TrialLessonsProps> = ({ onBack, onStartModule, onRe
                 Пройти ещё раз
               </button>
             </div>
-          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 w-full">
-      <div className="w-full max-w-full mx-auto">
-        {/* Основной контент */}
-        <div className="bg-white rounded-[2.5rem] p-6 sm:p-8 shadow-2xl border border-gray-100">
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 px-4 sm:px-6">
+      <div className="w-full">
+        {/* Основной контент — на весь экран без рамок */}
+        <div className="w-full">
 
           {/* Урок 1 */}
           {currentStep === 1 && (
@@ -259,18 +257,18 @@ const TrialLessons: React.FC<TrialLessonsProps> = ({ onBack, onStartModule, onRe
               </button>
 
               {/* Блок с информацией о курсе и спецпредложении */}
-              <div className="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 rounded-2xl p-6 text-white shadow-xl border border-slate-600">
-                <p className="text-lg font-bold leading-relaxed mb-4">
+              <div className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 rounded-2xl p-6 shadow-xl border-2 border-orange-200">
+                <p className="text-lg font-bold leading-relaxed mb-4 text-gray-800">
                   👋 Отлично! Первые шаги уже сделаны, и теперь ты готов(а) перейти на новый уровень.
                 </p>
-                <p className="text-gray-200 font-medium mb-4">
+                <p className="text-gray-700 font-medium mb-4">
                   Открой Полный курс и выучи 180 сильных глаголов в 3-х формах легко — навсегда.
                 </p>
-                <p className="text-gray-200 font-bold mb-4">
+                <p className="text-gray-700 font-bold mb-4">
                   Хочешь получить мое спецпредложение с доступом по минимальной цене?
                 </p>
                 <button
-                  onClick={handleOpenSpecialOfferModal}
+                  onClick={() => onShowSpecialOffer?.()}
                   className="w-full py-4 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl font-black text-lg shadow-lg hover:shadow-xl active:scale-95 transition-all"
                 >
                   Получить 🔥 СПЕЦПРЕДЛОЖЕНИЕ
@@ -279,8 +277,8 @@ const TrialLessons: React.FC<TrialLessonsProps> = ({ onBack, onStartModule, onRe
             </div>
           )}
 
-          {/* Модалка "Отлично! теперь ты..." */}
-          {showSpecialOfferModal && (
+        {/* Модалка "Отлично! теперь ты..." */}
+        {showSpecialOfferModal && (
             <div 
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
               onClick={() => setShowSpecialOfferModal(false)}

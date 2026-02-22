@@ -70,7 +70,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
         input: text,
         voice,
         language: lang === 'de' ? 'de' : lang === 'ru' ? 'ru' : undefined,
-        speed: 0.75, // Скорость речи по умолчанию 0.75 (0.25-4.0)
+        speed: 1.0, // Скорость речи (0.25-4.0)
       }),
     });
 

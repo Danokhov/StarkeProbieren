@@ -1,4 +1,5 @@
 import React from 'react';
+import { openTelegramBotLink } from '../utils/telegramUtils';
 
 interface SpecialOfferProps {
   onBack: () => void;
@@ -57,9 +58,7 @@ const SpecialOffer: React.FC<SpecialOfferProps> = ({ onBack }) => {
                 </div>
               </div>
               <button
-                onClick={() => {
-                  window.open('https://t.me/de_starke_verben_bot?start=69515bee2cfb28cd220a0f17', '_blank');
-                }}
+                onClick={() => openTelegramBotLink('https://t.me/de_starke_verben_bot?start=69515bee2cfb28cd220a0f17')}
                 className="w-full mt-4 py-3 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white rounded-xl font-black text-base shadow-lg hover:shadow-xl active:scale-95 transition-all"
               >
                 Оплатить
@@ -89,9 +88,7 @@ const SpecialOffer: React.FC<SpecialOfferProps> = ({ onBack }) => {
                 </div>
               </div>
               <button
-                onClick={() => {
-                  window.open('https://t.me/de_starke_verben_bot?start=699813f65029210aa5020570', '_blank');
-                }}
+                onClick={() => openTelegramBotLink('https://t.me/de_starke_verben_bot?start=699813f65029210aa5020570')}
                 className="w-full mt-4 py-3 bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500 text-white rounded-xl font-black text-base shadow-lg hover:shadow-xl active:scale-95 transition-all"
               >
                 Оплатить
