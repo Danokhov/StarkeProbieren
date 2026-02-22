@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      // Разрешаем чтение и запись для всех (для тестирования)
+      allow read, write: if true;
+    }
+    match /quizResults/{quizId} {
+      // Разрешаем чтение и запись для всех (для тестирования)
+      allow read, write: if true;
+    }
+  }
+}
+
+
+

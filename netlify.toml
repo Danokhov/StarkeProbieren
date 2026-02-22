@@ -1,0 +1,16 @@
+[build]
+  command = "npm install && npm run build"
+  publish = "dist"
+  
+[build.environment]
+  NODE_VERSION = "18"
+  # Отключаем умное определение секретов, так как sk- встречается в описаниях формата ключа
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
