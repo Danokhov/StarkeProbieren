@@ -566,19 +566,19 @@ const App: React.FC = () => {
               <h3 className="text-xl font-black text-orange-700 mb-4">В Пробных уроках ты узнаешь</h3>
               <div className="space-y-3 mb-4">
                 <div className="flex items-start gap-3">
-                  <span className="text-orange-600 text-lg font-black">1️⃣</span>
+                  <span className="text-orange-600 text-lg font-black">1.</span>
                   <p className="text-gray-700 flex-1">
-                    как легко и быстро запоминать глаголы с помощью ассоциаций ✨
+                    как легко и быстро запоминать глаголы с помощью ассоциаций
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-orange-600 text-lg font-black">2️⃣</span>
+                  <span className="text-orange-600 text-lg font-black">2.</span>
                   <p className="text-gray-700 flex-1">
-                    как запоминать 3 формы глагола с помощью 🧠 мнемотехник
+                    как запоминать 3 формы глагола с помощью мнемотехник
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-orange-600 text-lg font-black">3️⃣</span>
+                  <span className="text-orange-600 text-lg font-black">3.</span>
                   <p className="text-gray-700 flex-1">
                     запомнишь ряд полезных сильных глаголов и пройдешь Квиз
                   </p>
@@ -1018,7 +1018,7 @@ const App: React.FC = () => {
             </button>
           )}
           <h1 className="text-sm sm:text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 uppercase tracking-tight truncate">
-            {showSpecialOffer ? 'Спецпредложение' : showCourseInfo ? 'Курс' : showTrialLessons ? 'Пробные Уроки' : showTrialKnowledgeCheck ? 'Проверка знаний' : showAssociationsBase ? 'База глаголов' : activeModule ? (activeModule === 'video' ? (selectedTopic?.id === 'house-cleaning' ? 'Теория глаголов' : selectedTopic?.id === 'job-interview' ? 'Модальные глаголы' : 'Ассоциации') : activeModule === 'band-story' ? (selectedTopic?.id === 'house-cleaning' ? 'Техника ассоциаций' : selectedTopic?.id === 'job-interview' ? 'Техники для запоминания банд' : 'История Банды') : activeModule === 'flashcards' ? 'Карточки' : activeModule === 'verb-form-flashcards' ? 'Карточки Глаголы в 3-х формах' : activeModule === 'mantras' ? 'Мантры' : activeModule === 'exercises' ? 'Пробелы в мантрах' : activeModule === 'verb-forms' ? 'Заполнение слов' : activeModule === 'text-gaps' ? 'Пробелы в тексте' : '') : selectedTopic ? 'Модули' : 'PRO Starke Verben'}
+            {showSpecialOffer ? 'Спецпредложение' : showCourseInfo ? 'Курс' : showTrialLessons ? 'Пробные Уроки' : showTrialKnowledgeCheck ? 'Проверка знаний' : showAssociationsBase ? 'База глаголов' : activeModule ? (activeModule === 'video' ? (selectedTopic?.id === 'house-cleaning' ? 'Теория глаголов' : selectedTopic?.id === 'job-interview' ? 'Модальные глаголы' : 'Ассоциации') : activeModule === 'band-story' ? (selectedTopic?.id === 'house-cleaning' ? 'Техника ассоциаций' : selectedTopic?.id === 'job-interview' ? 'Техники для запоминания банд' : 'История Банды') : activeModule === 'flashcards' ? 'Карточки' : activeModule === 'verb-form-flashcards' ? 'Карточки Глаголы в 3-х формах' : activeModule === 'mantras' ? 'Мантры' : activeModule === 'exercises' ? 'Пробелы в мантрах' : activeModule === 'verb-forms' ? 'Заполнение слов' : activeModule === 'text-gaps' ? 'Пробелы в тексте' : '') : selectedTopic ? 'Модули' : ''}
           </h1>
         </div>
 

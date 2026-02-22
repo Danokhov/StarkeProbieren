@@ -24,38 +24,32 @@ const SpecialOffer: React.FC<SpecialOfferProps> = ({ onBack }) => {
             <div className="inline-block mb-4">
               <span className="text-4xl">🔥</span>
             </div>
-            <h1 className="text-3xl font-black text-gray-800 mb-2 leading-tight">
+            <h1 className="text-2xl font-black text-gray-800 mb-2 leading-tight">
               Спецпредложение на полный курс со скидкой 50% Ограничено по времени!
             </h1>
           </div>
 
           {/* Опции */}
           <div className="space-y-6 mb-8">
-            <h2 className="text-2xl font-black text-gray-800 text-center mb-6">
+            <h2 className="text-xl font-black text-gray-800 text-center mb-6">
               Выбирай свою ОПЦИЮ!
             </h2>
 
             {/* Опция 1 */}
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-orange-200 shadow-lg">
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">1️⃣</div>
-                <div className="flex-1">
-                  <div className="mb-3">
-                    <span className="text-green-600 text-xl mr-2">✅</span>
-                    <span className="text-xl font-black text-gray-800">
-                      🏆 <b>"ВСЕ 11 МОДУЛЕЙ"</b>
-                    </span>
-                  </div>
-                  <div className="ml-8 space-y-2">
-                    <p className="text-lg font-bold text-gray-700">
-                      за <b className="text-orange-600 text-xl">39 евро</b>{' '}
-                      <s className="text-gray-400">вместо 79 евро</s>
-                    </p>
-                    <p className="text-base text-gray-600">
-                      + доступ в закрытый Телеграм Канал с дополнительными материалами.
-                    </p>
-                  </div>
-                </div>
+            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-orange-200 shadow-lg text-center">
+              <div className="mb-3">
+                <span className="text-xl font-black text-gray-800">
+                  <b>ВСЕ 11 МОДУЛЕЙ</b>
+                </span>
+              </div>
+              <div className="space-y-2 mb-4">
+                <p className="text-lg font-bold text-gray-700">
+                  за <b className="text-orange-600 text-xl">39 евро</b>{' '}
+                  <s className="text-gray-400">вместо 79 евро</s>
+                </p>
+                <p className="text-base text-gray-600">
+                  + доступ в закрытый Телеграм Канал с дополнительными материалами.
+                </p>
               </div>
               <button
                 onClick={() => openTelegramBotLink('https://t.me/de_starke_verben_bot?start=69515bee2cfb28cd220a0f17')}
@@ -66,26 +60,20 @@ const SpecialOffer: React.FC<SpecialOfferProps> = ({ onBack }) => {
             </div>
 
             {/* Опция 2 */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-indigo-200 shadow-lg">
-              <div className="flex items-start gap-4">
-                <div className="text-3xl">2️⃣</div>
-                <div className="flex-1">
-                  <div className="mb-3">
-                    <span className="text-green-600 text-xl mr-2">✅</span>
-                    <span className="text-xl font-black text-gray-800">
-                      <b>Первые 6 МОДУЛЕЙ</b>
-                    </span>
-                  </div>
-                  <div className="ml-8 space-y-2">
-                    <p className="text-lg font-bold text-gray-700">
-                      за <b className="text-indigo-600 text-xl">25 евро</b>
-                    </p>
-                    <p className="text-base text-gray-600 mb-2">
-                      ➕ Потом по желанию остальные 5 МОДУЛЕЙ — за{' '}
-                      <b className="text-indigo-600">19 евро</b>
-                    </p>
-                  </div>
-                </div>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-indigo-200 shadow-lg text-center">
+              <div className="mb-3">
+                <span className="text-xl font-black text-gray-800">
+                  <b>Первые 6 МОДУЛЕЙ</b>
+                </span>
+              </div>
+              <div className="space-y-2 mb-4">
+                <p className="text-lg font-bold text-gray-700">
+                  за <b className="text-indigo-600 text-xl">25 евро</b>
+                </p>
+                <p className="text-base text-gray-600 mb-2">
+                  Потом по желанию остальные 5 МОДУЛЕЙ — за{' '}
+                  <b className="text-indigo-600">19 евро</b>
+                </p>
               </div>
               <button
                 onClick={() => openTelegramBotLink('https://t.me/de_starke_verben_bot?start=699813f65029210aa5020570')}
